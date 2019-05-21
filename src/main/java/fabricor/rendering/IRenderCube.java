@@ -7,5 +7,6 @@ public interface IRenderCube {
 
 	public Vector3f getWorldPosition();
 	public Quaternionf getWorldRotation();
+	public boolean[] getNonOccludedSides();
 	
 }

@@ -1,6 +1,9 @@
 package fabricor.main;
 
+import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.ByteBuffer;
@@ -39,7 +42,6 @@ import org.lwjgl.vulkan.VkDebugReportCallbackCreateInfoEXT;
 import org.lwjgl.vulkan.VkDebugReportCallbackEXT;
 import org.lwjgl.vulkan.VkDebugReportCallbackEXTI;
 import org.lwjgl.vulkan.VkDescriptorBufferInfo;
-import org.lwjgl.vulkan.VkDescriptorImageInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolCreateInfo;
 import org.lwjgl.vulkan.VkDescriptorPoolSize;
 import org.lwjgl.vulkan.VkDescriptorSetAllocateInfo;
@@ -105,6 +107,7 @@ import org.lwjgl.vulkan.VkWriteDescriptorSet;
 import fabricor.rendering.MasterRenderer;
 import fabricor.rendering.RenderModel;
 import fabricor.rendering.ShaderBuffer;
+import standardShader.ShaderLoadTarget;
 
 public class Main {
 
@@ -136,8 +139,8 @@ public class Main {
 
 	private VkQueueFamilyProperties.Buffer queue_props;
 
-	private static int width = 300;
-	private static int height = 300;
+	private static int width = 1600;
+	private static int height = 900;
 
 	public static int getWidth() {
 		return width;
@@ -441,7 +444,7 @@ public class Main {
 	private void demo_create_window() {
 		GLFW.glfwWindowHint(GLFW.GLFW_CLIENT_API, GLFW.GLFW_NO_API);
 
-		window = GLFW.glfwCreateWindow(width, height, "The Vulkan Triangle Demo Program", 0, 0);
+		window = GLFW.glfwCreateWindow(width, height, "Fabricor", 0, 0);
 		if (window == 0) {
 			throw new IllegalStateException("Cannot create a window in which to draw!");
 		}
@@ -1203,7 +1206,7 @@ public class Main {
 			// Two stages: vs and fs
 			ByteBuffer main = stack.UTF8("main");
 
-			long[] shaders = loadShaderFromClasspath("triangle", device);
+			long[] shaders = loadShaderFromClasspath("standardShader", device);
 
 			VkPipelineShaderStageCreateInfo.Buffer shaderStages = VkPipelineShaderStageCreateInfo.callocStack(2, stack);
 			shaderStages.get(0).sType(VK10.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO)
