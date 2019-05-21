@@ -115,5 +115,4 @@ public class Grid {
 		cubes[(int) v4.x][(int) v4.y][(int) v4.z]=null;
 		bind=true;
 	}
-
 }
