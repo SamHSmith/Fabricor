@@ -1,4 +1,0 @@
-sudo ln libglfw.so.3.3 libglfw.dylib -s
-sudo ln libvulkan.so.1 libvulkan-1.so -s
-
-you must run this to make the glfw and vulkan dll get found
