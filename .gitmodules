@@ -1,1 +1,4 @@
 
+[submodule "VulkanRen"]
+	path = VulkanRen
+	url = https://github.com/SamHSmith/VulkanRen.git
